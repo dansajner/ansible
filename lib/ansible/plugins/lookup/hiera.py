@@ -53,7 +53,7 @@ RETURN = """
     _raw:
         description:
             - a value associated with input key
-        type: strings
+        type: json
 """
 
 import os
@@ -72,7 +72,7 @@ class Hiera(object):
 
         pargs.extend(hiera_key)
 
-        rc, output, err = run_cmd("{} -c {} {}".format(
+        rc, output, err = run_cmd("{} -f json -c {} {}".format(
             ANSIBLE_HIERA_BIN, ANSIBLE_HIERA_CFG, hiera_key[0]))
 
         return output.strip()
